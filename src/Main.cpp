@@ -61,7 +61,8 @@ d4rk@xbmc.org
 // Called once when the visualisation is created by XBMC. Do any setup here.
 //-----------------------------------------------------------------------------
 CVisualizationProjectM::CVisualizationProjectM()
-  : m_UserPackFolder(false)
+  : m_projectM(nullptr),
+    m_UserPackFolder(false)
 {
   m_configPM.meshX = gx;
   m_configPM.meshY = gy;
@@ -100,11 +101,6 @@ CVisualizationProjectM::~CVisualizationProjectM()
   kodi::SetSettingString("last_preset_folder", m_projectM->settings().presetURL);
   kodi::SetSettingBoolean("last_locked_status", m_projectM->isPresetLocked());
 
-  if (m_projectM)
-  {
-    delete m_projectM;
-    m_projectM = nullptr;
-  }
 }
 
 //-- Audiodata ----------------------------------------------------------------
