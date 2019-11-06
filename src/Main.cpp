@@ -56,13 +56,11 @@ d4rk@xbmc.org
 #include "Main.h"
 
 //m_projectM;
-projectM* m_projectM;
 
 //-- Create -------------------------------------------------------------------
 // Called once when the visualisation is created by XBMC. Do any setup here.
 //-----------------------------------------------------------------------------
 CVisualizationProjectM::CVisualizationProjectM()
-  : m_projectM(nullptr),
     m_UserPackFolder(false)
 {
   m_configPM.meshX = gx;
