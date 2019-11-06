@@ -68,7 +68,7 @@ public:
   CVisualizationProjectM();
   ~CVisualizationProjectM() override;
 
-  const projectM* m_projectM;
+  const dfdfdprojectM* m_projectM;
   void Render() override;
   void AudioData(const float* audioData, int audioDataLength, float *freqData, int freqDataLength) override;
   bool GetPresets(std::vector<std::string>& presets) override;
