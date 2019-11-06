@@ -68,6 +68,7 @@ public:
   CVisualizationProjectM();
   ~CVisualizationProjectM() override;
 
+  projectM* m_projectM;
   void Render() override;
   void AudioData(const float* audioData, int audioDataLength, float *freqData, int freqDataLength) override;
   bool GetPresets(std::vector<std::string>& presets) override;
@@ -85,7 +86,6 @@ private:
   void ChoosePresetPack(int pvalue);
   void ChooseUserPresetFolder(std::string pvalue);
 
-  projectM* m_projectM;
   projectM::Settings m_configPM;
   std::mutex m_pmMutex;
   bool m_UserPackFolder;
