@@ -61,7 +61,6 @@ d4rk@xbmc.org
 // Called once when the visualisation is created by XBMC. Do any setup here.
 //-----------------------------------------------------------------------------
 CVisualizationProjectM::CVisualizationProjectM()
-    m_UserPackFolder(false)
 {
   m_configPM.meshX = gx;
   m_configPM.meshY = gy;
