@@ -60,7 +60,7 @@ d4rk@xbmc.org
 
 #include <libprojectM/projectM.hpp>
 
-extern projectM* m_projectM;
+
 
 class ATTRIBUTE_HIDDEN CVisualizationProjectM
   : public kodi::addon::CAddonBase,
@@ -70,6 +70,7 @@ public:
   CVisualizationProjectM();
   ~CVisualizationProjectM() override;
 
+  const projectM* m_projectM;
   void Render() override;
   void AudioData(const float* audioData, int audioDataLength, float *freqData, int freqDataLength) override;
   bool GetPresets(std::vector<std::string>& presets) override;
