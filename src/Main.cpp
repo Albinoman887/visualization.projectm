@@ -58,7 +58,8 @@ d4rk@xbmc.org
 
 //bool m_projectM = NULL;
 
-projectM m_projectM = NULL;
+long int m_projectM = NULL;
+projectM *m_projectM;
 
 //-- Create -------------------------------------------------------------------
 // Called once when the visualisation is created by XBMC. Do any setup here.
