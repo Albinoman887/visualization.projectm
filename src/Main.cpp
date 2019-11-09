@@ -58,7 +58,7 @@ d4rk@xbmc.org
 
 //bool m_projectM = NULL;
 
-long int m_projectM = NULL;
+long int m_projectM;
 projectM *m_projectM;
 
 //-- Create -------------------------------------------------------------------
