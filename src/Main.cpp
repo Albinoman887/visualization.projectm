@@ -55,7 +55,7 @@ d4rk@xbmc.org
 
 #include "Main.h"
 
-projectM *m_projectM = NULL;
+//projectM *m_projectM = NULL;
 
 //-- Create -------------------------------------------------------------------
 // Called once when the visualisation is created by XBMC. Do any setup here.
