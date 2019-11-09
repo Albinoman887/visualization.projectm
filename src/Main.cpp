@@ -55,7 +55,8 @@ d4rk@xbmc.org
 
 #include "Main.h"
 
-m_projectM = 1;
+projectM *m_projectM = NULL;
+
 //-- Create -------------------------------------------------------------------
 // Called once when the visualisation is created by XBMC. Do any setup here.
 //-----------------------------------------------------------------------------
@@ -100,6 +101,11 @@ CVisualizationProjectM::~CVisualizationProjectM()
   kodi::SetSettingString("last_preset_folder", m_projectM->settings().presetURL);
   kodi::SetSettingBoolean("last_locked_status", m_projectM->isPresetLocked());
 
+  if (m_projectM)
+  {
+    delete m_projectM;
+    m_projectM = nullptr;
+  }
 }
 
 //-- Audiodata ----------------------------------------------------------------
