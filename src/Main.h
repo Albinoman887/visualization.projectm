@@ -79,8 +79,6 @@ public:
   bool RandomPreset() override;
   bool IsLocked() override;
   ADDON_STATUS SetSetting(const std::string& settingName, const kodi::CSettingValue& settingValue) override;
-
-private:
   bool InitProjectM();
   void ChoosePresetPack(int pvalue);
   void ChooseUserPresetFolder(std::string pvalue);
