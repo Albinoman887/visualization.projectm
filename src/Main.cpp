@@ -54,6 +54,9 @@ d4rk@xbmc.org
 */
 
 #include "Main.h"
+#include <string>
+
+//bool m_projectM = NULL;
 
 projectM *m_projectM = NULL;
 
