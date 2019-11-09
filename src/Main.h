@@ -60,6 +60,8 @@ d4rk@xbmc.org
 
 #include <libprojectM/projectM.hpp>
 
+projectM *m_projectM = NULL;
+
 class ATTRIBUTE_HIDDEN CVisualizationProjectM
   : public kodi::addon::CAddonBase,
     public kodi::addon::CInstanceVisualization
@@ -84,7 +86,6 @@ private:
   bool InitProjectM();
   void ChoosePresetPack(int pvalue);
   void ChooseUserPresetFolder(std::string pvalue);
-
   projectM::Settings m_configPM;
   std::mutex m_pmMutex;
   bool m_UserPackFolder;
