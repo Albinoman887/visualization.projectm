@@ -55,6 +55,8 @@ d4rk@xbmc.org
 
 #include "Main.h"
 
+const long int m_projectM = NULL;
+
 //-- Create -------------------------------------------------------------------
 // Called once when the visualisation is created by XBMC. Do any setup here.
 //-----------------------------------------------------------------------------
@@ -265,27 +267,17 @@ bool CVisualizationProjectM::InitProjectM()
 {
   std::unique_lock<std::mutex> lock(m_pmMutex);
   delete m_projectM; //We are re-initializing the engine
-  try
-  {
+
     m_projectM = new projectM(m_configPM);
-    if (m_configPM.presetURL == m_lastPresetDir)  //If it is not the first run AND if this is the same preset pack as last time
-    {
-      m_projectM->setPresetLock(m_lastLockStatus);
-      m_projectM->selectPreset(m_lastPresetIdx);
-    }
-    else
-    {
-      //If it is the first run or a newly chosen preset pack we choose a random preset as first
-      if (m_projectM->getPlaylistSize())
-        m_projectM->selectPreset((rand() % (m_projectM->getPlaylistSize())));
-    }
+
+    //  m_projectM->setPresetLock(m_lastLockStatus);
+  //    m_projectM->selectPreset(m_lastPresetIdx);
+        if (m_projectM->getPlaylistSize())
+         m_projectM->selectPreset((rand() % (m_projectM->getPlaylistSize())));
+    
+
+
     return true;
-  }
-  catch (...)
-  {
-    kodi::Log(ADDON_LOG_FATAL, "exception in projectM ctor");
-    return false;
-  }
 }
 
 void CVisualizationProjectM::ChoosePresetPack(int pvalue)
