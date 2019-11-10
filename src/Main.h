@@ -83,6 +83,7 @@ public:
   void ChoosePresetPack(int pvalue);
   void ChooseUserPresetFolder(std::string pvalue);
 
+  projectM *m_projectM;
   projectM::Settings m_configPM;
   std::mutex m_pmMutex;
   bool m_UserPackFolder;
