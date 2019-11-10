@@ -60,7 +60,7 @@ d4rk@xbmc.org
 
 #include <libprojectM/projectM.hpp>
 
-class ATTRIBUTE_HIDDEN CVisualizationProjectM
+class CVisualizationProjectM
   : public kodi::addon::CAddonBase,
     public kodi::addon::CInstanceVisualization
 {
