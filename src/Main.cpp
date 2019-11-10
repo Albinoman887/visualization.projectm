@@ -131,7 +131,7 @@ void CVisualizationProjectM::Render()
       unsigned preset;
       m_projectM->selectedPresetIndex(preset);
 //      if (m_lastLoggedPresetIdx != preset)
-        CLog::Log(LOGDEBUG,"PROJECTM - Changed preset to: %s",g_presets[preset]);
+//        CLog::Log(LOGDEBUG,"PROJECTM - Changed preset to: %s",g_presets[preset]);
       m_lastLoggedPresetIdx = preset;
   }
 }
@@ -146,7 +146,7 @@ bool CVisualizationProjectM::LoadPreset(int select)
 bool CVisualizationProjectM::PrevPreset()
 {
   std::unique_lock<std::mutex> lock(m_pmMutex);
-  switchPreset(ALPHA_PREVIOUS, SOFT_CUT);
+//  switchPreset(ALPHA_PREVIOUS, SOFT_CUT);
   if (!m_projectM->isShuffleEnabled())
     m_projectM->key_handler(PROJECTM_KEYDOWN, PROJECTM_K_p, PROJECTM_KMOD_CAPS); //ignore PROJECTM_KMOD_CAPS
   else
@@ -158,7 +158,7 @@ bool CVisualizationProjectM::PrevPreset()
 bool CVisualizationProjectM::NextPreset()
 {
   std::unique_lock<std::mutex> lock(m_pmMutex);
-  switchPreset(ALPHA_NEXT, SOFT_CUT);
+//  switchPreset(ALPHA_NEXT, SOFT_CUT);
   if (!m_projectM->isShuffleEnabled())
     m_projectM->key_handler(PROJECTM_KEYDOWN, PROJECTM_K_n, PROJECTM_KMOD_CAPS); //ignore PROJECTM_KMOD_CAPS
   else
