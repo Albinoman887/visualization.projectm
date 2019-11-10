@@ -104,8 +104,8 @@ CVisualizationProjectM::~CVisualizationProjectM()
 
   if (m_projectM)
   {
-    delete m_projectM;
-    m_projectM = nullptr;
+   // delete m_projectM;
+    //m_projectM = nullptr;
   }
 }
 
