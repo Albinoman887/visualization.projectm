@@ -267,7 +267,7 @@ ADDON_STATUS CVisualizationProjectM::SetSetting(const std::string& settingName, 
 bool CVisualizationProjectM::InitProjectM()
 {
   std::unique_lock<std::mutex> lock(m_pmMutex);
-  delete m_projectM; //We are re-initializing the engine
+  //delete m_projectM; //We are re-initializing the engine
 
     m_projectM = new projectM(m_configPM);
 
