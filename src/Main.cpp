@@ -91,6 +91,7 @@ CVisualizationProjectM::CVisualizationProjectM() :
   m_configPM.beatSensitivity = kodi::GetSettingInt("beat_sens") * 2;
 
   InitProjectM();
+        CLog::Log(LOGDEBUG,"::CVisualizationProjectM() - calling InitProjectM()");
 }
 
 CVisualizationProjectM::~CVisualizationProjectM()
@@ -108,6 +109,7 @@ CVisualizationProjectM::~CVisualizationProjectM()
       if (M_projectM)
       {
          delete M_projectM;
+                CLog::Log(LOGDEBUG,"::~Vis*ProjectM()() - delete M_projectM ");
         M_projectM = nullptr;
       }
   }
@@ -121,6 +123,7 @@ void CVisualizationProjectM::AudioData(const float* pAudioData, int iAudioDataLe
   std::unique_lock<std::mutex> lock(m_pmMutex);
   if (M_projectM)
     M_projectM->pcm()->addPCMfloat_2ch(pAudioData, iAudioDataLength);
+        CLog::Log(LOGDEBUG,"::AutoData() - M_projectM->pcm()->addPCMfloat_2ch(pAudioData, iAudioDataLength);");
 }
 
 //-- Render -------------------------------------------------------------------
@@ -129,21 +132,26 @@ void CVisualizationProjectM::AudioData(const float* pAudioData, int iAudioDataLe
 void CVisualizationProjectM::Render()
 {
   std::unique_lock<std::mutex> lock(m_pmMutex);
+        CLog::Log(LOGDEBUG,"::Render() - M_projectM is locked");
   if (M_projectM)
   {
     M_projectM->renderFrame();
       unsigned preset;
       M_projectM->selectedPresetIndex(preset);
-//      if (m_lastLoggedPresetIdx != preset)
-//        CLog::Log(LOGDEBUG,"PROJECTM - Changed preset to: %s",g_presets[preset]);
+      if (m_lastLoggedPresetIdx != preset)
+        CLog::Log(LOGDEBUG,"::Render() - if (m_lastLoggedPresetIdx != preset is true");
+        CLog::Log(LOGDEBUG,"PROJECTM - Changed preset to: %s",g_presets[preset]);
       m_lastLoggedPresetIdx = preset;
+        CLog::Log(LOGDEBUG,"::Render() - m_lastLoggedPresetIdx = preset;");
   }
 }
 
 bool CVisualizationProjectM::LoadPreset(int select)
 {
   std::unique_lock<std::mutex> lock(m_pmMutex);
+        CLog::Log(LOGDEBUG,"LoadPreset =   Mutexl lock");
   M_projectM->selectPreset(select);
+        CLog::Log(LOGDEBUG,"LoadPreset =   M_projectM->selectPreset(select);");
   return true;
 }
 
@@ -167,6 +175,7 @@ bool CVisualizationProjectM::NextPreset()
     M_projectM->key_handler(PROJECTM_KEYDOWN, PROJECTM_K_n, PROJECTM_KMOD_CAPS); //ignore PROJECTM_KMOD_CAPS
   else
     M_projectM->key_handler(PROJECTM_KEYDOWN, PROJECTM_K_r, PROJECTM_KMOD_CAPS); //ignore PROJECTM_KMOD_CAPS
+            CLog::Log(LOGDEBUG,"NextPreset =   shuffle on, pciking random...;");
   return true;
 }
 
@@ -210,6 +219,7 @@ int CVisualizationProjectM::GetActivePreset()
   unsigned preset;
   std::unique_lock<std::mutex> lock(m_pmMutex);
   if(M_projectM && M_projectM->selectedPresetIndex(preset))
+          CLog::Log(LOGDEBUG,"GetActivePreset =   current preset is: %s",g_presets[preset);
     return preset;
 
   return 0;
@@ -272,6 +282,7 @@ bool CVisualizationProjectM::InitProjectM()
 {
   std::unique_lock<std::mutex> lock(m_pmMutex);
   delete M_projectM; //We are re-initializing the engine
+          CLog::Log(LOGDEBUG,"::InitProjectM() =   delete M_porjectM);
   try
   {
     M_projectM = new projectM(m_configPM);
@@ -279,12 +290,14 @@ bool CVisualizationProjectM::InitProjectM()
     {
         M_projectM->setPresetLock(m_lastLockStatus);
         M_projectM->selectPreset(m_lastPresetIdx);
+          CLog::Log(LOGDEBUG,"::InitProjectM() - NOT first run, re-load last preset: %s",g_presets[preset);
     }
     else
     {
       //If it is the first run or a newly chosen preset pack we choose a random preset as first
       if (M_projectM->getPlaylistSize())
         M_projectM->selectPreset((rand() % (M_projectM->getPlaylistSize())));
+          CLog::Log(LOGDEBUG,"::InitProjectM() - first run, load random preset: %s",g_presets[preset);
     }
     return true;
   }
