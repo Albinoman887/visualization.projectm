@@ -90,8 +90,8 @@ CVisualizationProjectM::CVisualizationProjectM() :
   ChooseUserPresetFolder(kodi::GetSettingString("user_preset_folder"));
   m_configPM.beatSensitivity = kodi::GetSettingInt("beat_sens") * 2;
 
+  kodi::Log(ADDON_LOG_NOTICE, "::CVisualizationProjectM() - calling InitProjectM()");
   InitProjectM();
-        kodi::Log(ADDON_LOG_NOTICE, "::CVisualizationProjectM() - calling InitProjectM()");
 }
 
 CVisualizationProjectM::~CVisualizationProjectM()
@@ -108,8 +108,8 @@ CVisualizationProjectM::~CVisualizationProjectM()
 
       if (M_projectM)
       {
+      kodi::Log(ADDON_LOG_NOTICE,"::~Vis*ProjectM()() - delete M_projectM ");
          delete M_projectM;
-                kodi::Log(ADDON_LOG_NOTICE,"::~Vis*ProjectM()() - delete M_projectM ");
         M_projectM = nullptr;
       }
   }
@@ -282,8 +282,8 @@ bool CVisualizationProjectM::InitProjectM()
 {
     unsigned preset;
   std::unique_lock<std::mutex> lock(m_pmMutex);
+  kodi::Log(ADDON_LOG_NOTICE,"::InitProjectM() =   delete M_porjectM");
   delete M_projectM; //We are re-initializing the engine
-          kodi::Log(ADDON_LOG_NOTICE,"::InitProjectM() =   delete M_porjectM");
   try
   {
     M_projectM = new projectM(m_configPM);
