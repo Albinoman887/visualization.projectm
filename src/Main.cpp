@@ -108,7 +108,7 @@ CVisualizationProjectM::~CVisualizationProjectM()
 
       if (M_projectM)
       {
-      kodi::Log(ADDON_LOG_NOTICE,"::~Vis*ProjectM()() - delete M_projectM ");
+      kodi::Log(ADDON_LOG_NOTICE,"::~Vis*ProjectM()() - shutdown M_projectM ");
          delete M_projectM;
         M_projectM = nullptr;
       }
