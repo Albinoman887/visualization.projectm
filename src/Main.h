@@ -85,6 +85,7 @@ private:
   void ChoosePresetPack(int pvalue);
   void ChooseUserPresetFolder(std::string pvalue);
 
+  projectM* m_projectM;
   projectM::Settings m_configPM;
   std::mutex m_pmMutex;
   bool m_UserPackFolder;
@@ -99,6 +100,5 @@ private:
   const static int texsize=512;
   const static int gx=40,gy=30;
   const static int fps=100;
-
-  static projectM* M_projectM;
 };
+
